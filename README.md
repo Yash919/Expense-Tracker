@@ -18,6 +18,9 @@ A simple Java console application to track monthly income and expenses, showing 
 ### Showing monthly Summary
 ![image](https://github.com/user-attachments/assets/25ba4699-4819-4513-9033-d4f280c8ad82)
 
+![image](https://github.com/user-attachments/assets/e79d6eb5-5267-4eab-9d07-66b348755e51)
+
+
 ### Load from file: 
 ![image](https://github.com/user-attachments/assets/3031e86e-bdd7-4569-a41b-4648bd0a5af9)
 
