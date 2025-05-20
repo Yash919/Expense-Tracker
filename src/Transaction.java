@@ -30,18 +30,32 @@ public class Transaction {
         return date;
     }
 
-    public static Transaction fromString(String line) {
-        String[] parts = line.split(",");
-        if (parts.length != 5) {
-            throw new IllegalArgumentException("Invalid line format: " + line);
+    public static Transaction fromString(String s) {
+        String[] parts = s.split(",");
+        if (parts.length != 4) {
+            throw new IllegalArgumentException("Invalid line format: " + s);
+        }
+        String typeStr = parts[0].trim();
+        String category = parts[1].trim();
+        double amount;
+        LocalDate date;
+        try {
+            amount = Double.parseDouble(parts[2].trim());
+            date = LocalDate.parse(parts[3].trim());
+        } catch (Exception e) {
+            throw new IllegalArgumentException("Invalid amount or date format: " + s);
         }
 
-        TransactionType type = TransactionType.valueOf(parts[1].trim().toUpperCase());
-        String category = parts[2].trim();
-        double amount = Double.parseDouble(parts[3].trim());
-        LocalDate date = LocalDate.parse(parts[4].trim(), DateTimeFormatter.ofPattern("yyyy-MM-dd"));
+        TransactionType type;
+        try {
+            type = TransactionType.valueOf(typeStr.toUpperCase());  // enum matching
+        } catch (Exception e) {
+            throw new IllegalArgumentException("Invalid transaction type: " + typeStr);
+        }
+
         return new Transaction(type, category, amount, date);
     }
+
 
     @Override
     public String toString() {

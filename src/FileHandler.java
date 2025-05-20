@@ -22,10 +22,21 @@ public class FileHandler {
             int lineNumber = 0;
             while ((line = reader.readLine()) != null) {
                 lineNumber++;
+                System.out.println("Reading line " + lineNumber + ": " + line);
                 try {
                     String[] parts = line.split(",", 2);
+                    if (parts.length < 2) {
+                        throw new IllegalArgumentException("Invalid line format");
+                    }
+
                     String username = parts[0].trim();
-                    Transaction transaction = Transaction.fromString(line);
+                    String transactionData = parts[1].trim();
+
+                    // Debug print
+                    System.out.println("Parsed username: " + username);
+                    System.out.println("Parsed transaction data: " + transactionData);
+
+                    Transaction transaction = Transaction.fromString(transactionData);
                     userMap.computeIfAbsent(username, User::new).addTransaction(transaction);
                 } catch (IllegalArgumentException e) {
                     System.out.println("Line " + lineNumber + " skipped: " + e.getMessage());
@@ -36,4 +47,6 @@ public class FileHandler {
             System.out.println("Error reading file: " + e.getMessage());
         }
     }
+
+
 }
