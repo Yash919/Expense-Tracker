@@ -29,8 +29,5 @@ A simple Java console application to track monthly income and expenses, showing 
 - Java 8+
 
 ## Author
-Yash Mehta
+Yash Mehta 🚀🚀
 
----
-
-Feel free to contribute or raise issues!
